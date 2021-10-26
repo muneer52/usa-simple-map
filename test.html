@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>USA Map Example</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h1>HTML5/Javascript USA Map</h1>
+    <div id="map"></div>
+
+    <!--
+      <p>This map was created and can be edited at <a href="http://simplemaps.com/custom/us/aiaIllfS">http://simplemaps.com/custom/us/aiaIllfS</a>
+      
+    
+      <p>To remove the "Simplemaps.com Trial" text, <a href="http://simplemaps.com/pricing" />purchase a map license</a>.  
+      
+      Then, register your license at the link above (Options > Register Purchase).  Or, simply replace the usmap.js file in this folder (trial version) with the usmap.js file that you are emailed (full version).
+      
+      </p>
+    
+    <p>To learn how to install this map on your web page, see the <a href="http://simplemaps.com/docs">Documentation</a>.</p>
+    
+    
+</div>-->
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link active"
+          id="home-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#home"
+          type="button"
+          role="tab"
+          aria-controls="home"
+          aria-selected="true"
+        >
+          Home
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="TX-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#TX"
+          type="button"
+          role="tab"
+          aria-controls="TX"
+          aria-selected="false"
+        >
+          TX
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="AZ-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#AZ"
+          type="button"
+          role="tab"
+          aria-controls="AZ"
+          aria-selected="false"
+        >
+          AZ
+        </button>
+      </li>
+
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="UT-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#UT"
+          type="button"
+          role="tab"
+          aria-controls="UT"
+          aria-selected="false"
+        >
+          UT
+        </button>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div
+        class="tab-pane fade show active"
+        id="home"
+        role="tabpanel"
+        aria-labelledby="home-tab"
+      >
+        1 This is some placeholder content the Home tab's associated content.
+        Clicking another tab will toggle the visibility of this one for the
+        next. The tab JavaScript swaps classes to control the content visibility
+        and styling. You can use it with tabs, pills, and any other .nav-powered
+        navigation.
+      </div>
+      <div
+        class="tab-pane fade"
+        id="TX"
+        role="tabpanel"
+        aria-labelledby="TX-tab"
+      >
+        2
+
+        <h1>TX</h1>
+
+        This is some placeholder content the Home tab's associated content.
+        Clicking another tab will toggle the visibility of this one for the
+        next. The tab JavaScript swaps classes to control the content visibility
+        and styling. You can use it with tabs, pills, and any other .nav-powered
+        navigation.
+      </div>
+      <div
+        class="tab-pane fade"
+        id="AZ"
+        role="tabpanel"
+        aria-labelledby="AZ-tab"
+      >
+        3
+        <h2>AZ</h2>
+        This is some placeholder content the Home tab's associated content.
+        Clicking another tab will toggle the visibility of this one for the
+        next. The tab JavaScript swaps classes to control the content visibility
+        and styling. You can use it with tabs, pills, and any other .nav-powered
+        navigation.
+      </div>
+      <div
+        class="tab-pane fade"
+        id="UT"
+        role="tabpanel"
+        aria-labelledby="updater-tab"
+      >
+        4
+        <h2>UT</h2>
+        This is some placeholder content the Home tab's associated content.
+        Clicking another tab will toggle the visibility of this one for the
+        next. The tab JavaScript swaps classes to control the content visibility
+        and styling. You can use it with tabs, pills, and any other .nav-powered
+        navigation.
+      </div>
+    </div>
+
+    <!-- Script -->
+    <script src="mapdata.js"></script>
+    <script src="usmap.js"></script>
+    <script type="text/javascript" src="select.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"
+      integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script type="text/javascript">
+      function triMarkLocationMap() {
+        // Tab switcher [Start]
+        function getLocationTab(location) {
+          let locationTab = location;
+          $("#myTab")
+            .find('[data-bs-target="#' + location + '"]')
+            .trigger("click");
+        }
+        // Tab switcher [END]
+
+        // Map Callbacks
+        simplemaps_usmap.hooks.click_state = function (id) {
+          getLocationTab(id);
+        };
+        simplemaps_select.selected_color = "#c03326";
+        simplemaps_select.max = 1;
+
+        // Map updater and tab updater on state paramenter
+        $(window).on("load", function () {
+          let getUrlParameter = function getUrlParameter(sParam) {
+            let sPageURL = window.location.search.substring(1),
+              sURLVariables = sPageURL.split("&"),
+              sParameterName,
+              i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+              sParameterName = sURLVariables[i].split("=");
+
+              if (sParameterName[0] === sParam) {
+                return typeof sParameterName[1] === undefined
+                  ? true
+                  : decodeURIComponent(sParameterName[1]);
+              }
+            }
+            return false;
+          };
+
+          if (getUrlParameter("state").length) {
+            let state = getUrlParameter("state").toUpperCase();
+
+            console.log(state);
+
+            $("#myTab")
+              .find('[data-bs-target="#' + state + '"]')
+              .trigger("click");
+
+            setTimeout(function () {
+              simplemaps_select.select(state);
+            }, 100);
+          }
+        });
+      }
+      triMarkLocationMap();
+    </script>
+  </body>
+</html>
